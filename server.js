@@ -36,6 +36,15 @@ router.route('/bears')
 
             res.json({message: 'Model Item Created!'});
         });
+    })
+    .get(function (req, res) {
+        Bear.find(function (err, bears) {
+            if (err) {
+                res.send(err);
+            }
+
+            res.json(bears);
+        });
     });
 
 

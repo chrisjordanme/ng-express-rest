@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+
+<input id="putter" type="text"/>
+
+
+<script>
+
+    $(function () {
+
+        $('#putter').on('change', function () {
+
+            var $self = $(this);
+            console.log($self.val());
+
+            $.ajax({
+                url: '/api/bears/548e123a6f27f21c74377327',
+                type: 'PUT',
+                data: {name: $self.val()},
+                success: function () {
+                    console.log('yes');
+                },
+                error: function () {
+                    console.log('no');
+                }
+            });
+
+        });
+
+        jQuery.ajax({
+            url: '/api/bears',
+            success: function (data) {
+                console.log(data);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

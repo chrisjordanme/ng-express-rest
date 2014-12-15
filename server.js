@@ -5,6 +5,7 @@ var mongoose   = require('mongoose');
 var Bear       = require('./model');
 var port = 3001;
 var router = express.Router();
+var root = __dirname;
 
 mongoose.connect('mongodb://localhost/rest');
 
@@ -46,6 +47,41 @@ router.route('/bears')
             res.json(bears);
         });
     });
+
+router.route('/bears/:bear_id')
+    .get(function (req, res) {
+        Bear.findById(req.params.bear_id, function (err, bear) {
+            if (err) {
+                res.send(err);
+            }
+
+            res.json(bear);
+        });
+    })
+    .put(function(req, res) {
+
+        // use our bear model to find the bear we want
+        Bear.findById(req.params.bear_id, function(err, bear) {
+
+            if (err)
+                res.send(err);
+
+            bear.name = req.body.name; 	// update the bears info
+
+            // save the bear
+            bear.save(function(err) {
+                if (err)
+                    res.send(err);
+
+                res.json({ message: 'Bear updated!' });
+            });
+
+        });
+    });
+
+router.get('/home', function (req, res, next) {
+    res.sendFile(__dirname + '/index.html');
+});
 
 
 

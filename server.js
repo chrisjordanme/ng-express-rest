@@ -17,6 +17,7 @@ app.use(bodyParser.json());
 // Logs a message when something is happening with the api
 router.use(function (req, res, next) {
     console.log('Something is happening');
+    console.log(req);
     next();
 });
 

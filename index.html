@@ -7,12 +7,32 @@
 </head>
 <body>
 
+Create:<br>
+<input id="create" type="text"/><br>
+Edit:<br>
 <input id="putter" type="text"/>
+
 
 
 <script>
 
     $(function () {
+
+        $('#create').on('change', function () {
+            var $self = $(this);
+
+            $.ajax({
+                url: '/api/bears',
+                type: 'POST',
+                data: {name: $self.val()},
+                success: function () {
+                    console.log('item successfully added');
+                },
+                error: function () {
+                    console.log('err');
+                }
+            })
+        });
 
         $('#putter').on('change', function () {
 

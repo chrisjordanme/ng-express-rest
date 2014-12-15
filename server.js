@@ -59,7 +59,7 @@ router.route('/bears/:bear_id')
             res.json(bear);
         });
     })
-    .put(function(req, res) {
+    .put(function (req, res) {
 
         // use our bear model to find the bear we want
         Bear.findById(req.params.bear_id, function(err, bear) {
@@ -78,11 +78,25 @@ router.route('/bears/:bear_id')
             });
 
         });
+    })
+    .delete(function (req, res) {
+        Bear.remove({
+            _id: req.params.bear_id
+        }, function(err, bear) {
+            if (err)
+                res.send(err);
+
+            res.json({ message: 'Successfully deleted' });
+        });
     });
 
 router.get('/home', function (req, res, next) {
     res.sendFile(__dirname + '/index.html');
 });
+
+
+app.use(express.static(__dirname + '/bower_components'));
+app.use(express.static(__dirname + '/'));
 
 
 

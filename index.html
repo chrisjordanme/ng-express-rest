@@ -3,64 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 </head>
-<body>
+<body ng-app="myApp">
+
+
+<div ng-controller="mainCtrl">
+
+    <ul>
+        <li ng-repeat="item in dat"><span ng-click="removeItem(item)">x... </span>{{item}}</li>
+    </ul>
+
+</div>
 
 Create:<br>
 <input id="create" type="text"/><br>
 Edit:<br>
 <input id="putter" type="text"/>
 
-
-
-<script>
-
-    $(function () {
-
-        $('#create').on('change', function () {
-            var $self = $(this);
-
-            $.ajax({
-                url: '/api/bears',
-                type: 'POST',
-                data: {name: $self.val()},
-                success: function () {
-                    console.log('item successfully added');
-                },
-                error: function () {
-                    console.log('err');
-                }
-            })
-        });
-
-        $('#putter').on('change', function () {
-
-            var $self = $(this);
-            console.log($self.val());
-
-            $.ajax({
-                url: '/api/bears/548e12196f27f21c74377326',
-                type: 'PUT',
-                data: {name: $self.val()},
-                success: function () {
-                    console.log('yes');
-                },
-                error: function () {
-                    console.log('no');
-                }
-            });
-
-        });
-
-        jQuery.ajax({
-            url: '/api/bears',
-            success: function (data) {
-                console.log(data);
-            }
-        });
-    });
-</script>
+<script src="/jquery/dist/jquery.min.js"></script>
+<script src="/angular/angular.min.js"></script>
+<script src="/angular-route/angular-route.min.js"></script>
+<script src="/angular-resource/angular-resource.min.js"></script>
+<script src="/main.js"></script>
 
 </body>
 </html>

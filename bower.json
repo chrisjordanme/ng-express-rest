@@ -1,0 +1,22 @@
+{
+  "name": "ng-express-rest",
+  "version": "0.0.0",
+  "homepage": "https://github.com/chrisjordanme/ng-express-rest",
+  "authors": [
+    "Chris Jordan <cljordan1@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.6",
+    "angular-route": "~1.3.6",
+    "jquery": "~2.1.1",
+    "angular-resource": "~1.3.6"
+  }
+}
